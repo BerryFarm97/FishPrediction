@@ -215,7 +215,6 @@ def run_prediction():
 def main():
     title = "fish bite predictor"
     options = ["Predict channel catfish bite", "Exit"]
-
     while True:
 
         print(title.title())
@@ -227,9 +226,15 @@ def main():
 
             if choice == 1:
                 run_prediction()
+                time.sleep(5)
+                print("Returning to main menu", end="")
+                for _ in range(5):
+                    for dots in range(4):
+                        print(f"\rReturning to main menu{'.' * dots}", end="", flush=True)
+                        time.sleep(0.5)
             elif choice == 2:
                 print("Thank you for using the fish predictor.\n Enjoy your trip!\U0001F3A3")
-                time.sleep(2.5)
+                time.sleep(1.25)
                 break
             else:
                 print("Invalid option. Please choose 1 or 2")
