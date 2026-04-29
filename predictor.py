@@ -153,18 +153,26 @@ def channel_cat_score_system(conditions):
     """
     return score
 
-def get_score_rating(score):
+def convert_score_to_percent(score):
+    score_total = score / 45 * 100
+    score_total_rounded = round(score_total)
+    return score_total_rounded
 
-    if score >= 45:
+
+def get_score_rating(score):
+    score_total_rounded = convert_score_to_percent(score)
+    if 80 <= score_total_rounded >= 100:
         return "Excellent"
-    elif 35 <= score <= 44:
+    elif 60 <= score_total_rounded <= 79:
         return "Good"
-    elif 25 <= score <= 34:
+    elif 40 <= score_total_rounded <= 59:
         return "Fair"
-    elif 15 <= score <= 24:
+    elif 20 <= score_total_rounded <= 39:
         return "Poor"
-    else:
+    elif 0 <= score_total_rounded <= 19:
         return "Bad"
+    else:
+        return "Invalid selection"
 
 def recommend_channel_cat_location(conditions):
 
@@ -193,11 +201,11 @@ def display_recommended_bait(bait):
     for i, item in enumerate(bait, start=1):
         print(f"{i}. {item}")
 
-def display_prediction(score, rating, bait, location):
+def display_prediction(score_total_rounded, rating, bait, location):
 
     print("\nChannel Catfish Prediction")
     print("-----------------------")
-    print(score)
+    print(f"{score_total_rounded}%")
     print(f"{rating}\n")
     display_recommended_bait(bait)
     print(f"\nRecommended location:\n{location}")
@@ -206,11 +214,12 @@ def display_prediction(score, rating, bait, location):
 def run_prediction():
     conditions = get_prediction_conditions()
     score = channel_cat_score_system(conditions)
-    rating = get_score_rating(score)
+    score_total_rounded = convert_score_to_percent(score)
+    rating = get_score_rating(score_total_rounded)
     location = recommend_channel_cat_location(conditions)
     bait = recommended_channel_cat_bait()
 
-    display_prediction(score, rating, bait, location)
+    display_prediction(score_total_rounded, rating, bait, location)
 
 def main():
     title = "fish bite predictor"
