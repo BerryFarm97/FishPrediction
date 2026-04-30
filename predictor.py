@@ -159,17 +159,16 @@ def convert_score_to_percent(score):
     return score_total_rounded
 
 
-def get_score_rating(score):
-    score_total_rounded = convert_score_to_percent(score)
-    if 80 <= score_total_rounded >= 100:
+def get_score_rating(score_percent):
+    if 80 <= score_percent <= 100:
         return "Excellent"
-    elif 60 <= score_total_rounded <= 79:
+    elif 60 <= score_percent <= 79:
         return "Good"
-    elif 40 <= score_total_rounded <= 59:
+    elif 40 <= score_percent <= 59:
         return "Fair"
-    elif 20 <= score_total_rounded <= 39:
+    elif 20 <= score_percent <= 39:
         return "Poor"
-    elif 0 <= score_total_rounded <= 19:
+    elif 0 <= score_percent <= 19:
         return "Bad"
     else:
         return "Invalid selection"
@@ -250,4 +249,5 @@ def main():
         except ValueError:
             print("Invalid option. Please choose 1 or 2")
 
-main()
+if __name__ == "__main__":
+    main()
