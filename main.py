@@ -42,7 +42,7 @@ def return_to_menu():
     time.sleep(5)
     print("Returning to main menu", end="")
 
-    for _ in range(5):
+    for _ in range(3):
         for dots in range(4):
             print(f"\rReturning to main menu{'.' * dots}", end="", flush=True)
             time.sleep(0.5)

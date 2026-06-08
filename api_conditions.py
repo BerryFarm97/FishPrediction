@@ -1,4 +1,5 @@
 from predictor import (
+    ask_menu_choice,
     channel_cat_score_system,
     convert_score_to_percent,
     get_score_rating,
@@ -9,7 +10,10 @@ from predictor import (
 
 
 def get_auto_conditions():
+    conditions["location"] = get_location()
+
     conditions = {
+        "location": "",
         "body_of_water": "lake",
         "water_level": "stable",
         "current": "unknown",
@@ -18,7 +22,13 @@ def get_auto_conditions():
         "storm": "no"
     }
 
+
+
     return conditions
+
+def get_location():
+    location = input("Where are you fishing today? (ex: Dickinson Tx): ").strip().lower()
+    return location
 
 def run_auto_prediction():
     conditions = get_auto_conditions()
